@@ -1,20 +1,41 @@
 import streamlit as st
 
-fnum=st.number_input("Enter value",min_value=0,value=50)
-snum=st.number_input("Enter value",min_value=0,value=50)
+st.title("Calculator for basic operations")
 
-options=["Add","Sub","Mul","Div"]
-choice=st.radio("Select an operation",options,horizontal=True)
+st.write("   ")
+num1 = st.number_input(label="Enter first number")
+num2 = st.number_input(label="Enter second number")
+st.write("Operation")
 
-button=st.button("CALCULATE")
+operation = st.radio("select an operation to perform:",("Add","Subtract","Multiply","Divide","Power","Max","Min"))
 
-if button:
-    if choice==options[0]:
-        result=fnum+snum
-    elif choice==options[1]:
-        result=fnum-snum
-    elif choice==options[2]:
-        result=fnum*snum
-    elif choice==options[3]:
-        result=fnum/snum
-    st.success(f"Result is {result}")
+ans=0
+
+def calculate():
+    if operation=="Add":
+        ans= num1+num2
+    elif operation=="Subtract":
+        ans= num1-num2
+    elif operation=="Multiply":
+        ans= num1*num2
+    elif operation=="Divide":
+        ans= num1/num2
+    elif operation=="Power":
+        ans= num1**num2
+    elif operation=="Max":
+        if num1>num2:
+            ans= num1
+        else:
+            ans= num2
+    elif operation=="Min":
+        if num1<num2:
+            ans= num1
+        else:
+            ans= num2
+    
+    st.success(f"Answer={ans}")
+
+if st.button("Calculater result"):
+    calculate()
+
+# streamlit run file name
